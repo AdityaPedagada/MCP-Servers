@@ -390,3 +390,29 @@ export async function searchFilesWithValidation(
   await search(rootPath);
   return results;
 }
+
+// Server creation function for reuse across transports
+export function createFilesystemServer(allowedDirs: string[] = []): import("@modelcontextprotocol/sdk/server/index.js").Server {
+  const { Server } = require("@modelcontextprotocol/sdk/server/index.js");
+  
+  // Set allowed directories if provided
+  if (allowedDirs.length > 0) {
+    setAllowedDirectories(allowedDirs);
+  }
+  
+  const server = new Server(
+    {
+      name: "secure-filesystem-server",
+      version: "0.2.0",
+    },
+    {
+      capabilities: {
+        tools: {},
+      },
+    },
+  );
+
+  // Note: Full handler implementation would be copied from index.ts
+  // For now, returning basic server - handlers need to be added
+  return server;
+}

@@ -237,7 +237,8 @@ def git_branch(repo: git.Repo, branch_type: str, contains: str | None = None, no
     return branch_info
 
 
-async def serve(repository: Path | None) -> None:
+def setup_git_handlers(server: Server, repository: Path | None) -> None:
+    """Setup all Git tool handlers on the server."""
     logger = logging.getLogger(__name__)
 
     if repository is not None:
@@ -247,8 +248,6 @@ async def serve(repository: Path | None) -> None:
         except git.InvalidGitRepositoryError:
             logger.error(f"{repository} is not a valid Git repository")
             return
-
-    server = Server("mcp-git")
 
     @server.list_tools()
     async def list_tools() -> list[Tool]:
@@ -468,6 +467,12 @@ async def serve(repository: Path | None) -> None:
             case _:
                 raise ValueError(f"Unknown tool: {name}")
 
+async def serve(repository: Path | None) -> None:
+    logger = logging.getLogger(__name__)
+
+    server = Server("mcp-git")
+    setup_git_handlers(server, repository)
+    
     options = server.create_initialization_options()
     async with stdio_server() as (read_stream, write_stream):
         await server.run(read_stream, write_stream, options, raise_exceptions=True)

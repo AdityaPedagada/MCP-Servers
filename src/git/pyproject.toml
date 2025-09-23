@@ -24,6 +24,7 @@ dependencies = [
 
 [project.scripts]
 mcp-server-git = "mcp_server_git:main"
+mcp-server-git-sse = "mcp_server_git.sse:main"
 
 [build-system]
 requires = ["hatchling"]

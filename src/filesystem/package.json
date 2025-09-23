@@ -17,18 +17,23 @@
     "build": "tsc && shx chmod +x dist/*.js",
     "prepare": "npm run build",
     "watch": "tsc --watch",
-    "test": "jest --config=jest.config.cjs --coverage"
+    "test": "jest --config=jest.config.cjs --coverage",
+    "start:sse": "node dist/sse.js"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.17.0",
+    "cors": "^2.8.5",
     "diff": "^5.1.0",
+    "express": "^4.21.1",
     "glob": "^10.3.10",
     "minimatch": "^10.0.1",
     "zod-to-json-schema": "^3.23.5"
   },
   "devDependencies": {
     "@jest/globals": "^29.7.0",
+    "@types/cors": "^2.8.19",
     "@types/diff": "^5.0.9",
+    "@types/express": "^5.0.0",
     "@types/jest": "^29.5.14",
     "@types/minimatch": "^5.1.2",
     "@types/node": "^22",

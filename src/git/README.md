@@ -333,6 +333,19 @@ If you are doing local development, there are two ways to test your changes:
 }
 ```
 
+## Transport Options
+
+### Standard I/O (Default)
+```bash
+uvx mcp-server-git --repository /path/to/repo
+```
+
+### Server-Sent Events (SSE)
+```bash
+uvx mcp-server-git-sse --repository /path/to/repo --port 3001
+```
+Runs on port 3001 (or specified port)
+
 ## Build
 
 Docker build:

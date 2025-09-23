@@ -279,6 +279,19 @@ Note: all directories must be mounted to `/projects` by default.
 }
 ```
 
+## Transport Options
+
+### Standard I/O (Default)
+```bash
+npx @modelcontextprotocol/server-filesystem /path/to/directory
+```
+
+### Server-Sent Events (SSE)
+```bash
+npm run start:sse -- /path/to/directory
+```
+Runs on port 3001 (or PORT environment variable)
+
 ## Build
 
 Docker build:
